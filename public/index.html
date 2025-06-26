@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guided Learning AI</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Anime.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <!-- Marked.js CDN for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked@4.0.12/marked.min.js"></script>
-    <!-- DOMPurify CDN for sanitizing HTML -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.6/purify.min.js"></script>
     <style>
         body {
             background: linear-gradient(to bottom, #1a202c, #2d3748);
         }
-        /* Blinking cursor style */
+        
         .cursor::after {
             content: '|';
             display: inline-block;
@@ -25,7 +21,7 @@
         @keyframes blink {
             50% { opacity: 0; }
         }
-        /* Markdown styling */
+        
         .markdown p {
             margin: 0.5rem 0;
         }
@@ -35,7 +31,7 @@
         .markdown em {
             font-style: italic;
         }
-        /* Decorative toggle */
+        
         .toggle-container {
             position: relative;
             width: 120px;
@@ -95,16 +91,16 @@
     </div>
 
     <script>
-        // DOM elements
+        
         const messageHolder = document.getElementById("messageHolder");
         const userInput = document.getElementById("userInput");
         const sendBtn = document.getElementById("sendBtn");
         const modeToggle = document.getElementById("modeToggle");
 
-        // Track current mode
-        let currentMode = "non-spoon-feeding"; // Default mode
+       
+        let currentMode = "non-spoon-feeding"; 
 
-        // Update mode state and animate toggle
+        
         modeToggle.addEventListener("change", () => {
             currentMode = modeToggle.checked ? "normal" : "non-spoon-feeding";
             anime({
@@ -115,7 +111,7 @@
             });
         });
 
-        // Anime.js fade-in animation for container
+       
         anime({
             targets: '#container',
             opacity: [0, 1],
@@ -124,7 +120,7 @@
             easing: 'easeOutQuad'
         });
 
-        // Anime.js subtle input field animation
+        
         userInput.addEventListener('focus', () => {
             anime({
                 targets: '#userInput',
@@ -142,7 +138,7 @@
             });
         });
 
-        // Professional typewriter effect with Markdown support
+       
         function typeWriter(text, element, callback) {
             const htmlContent = DOMPurify.sanitize(marked.parse(text));
             const tempDiv = document.createElement('div');
@@ -172,7 +168,7 @@
             });
         }
 
-        // Add message to chat
+      
         function addMessage(content, isUser = false) {
             const div = document.createElement("div");
             div.className = `p-3 rounded-lg ${isUser ? 'bg-green-600 text-white self-end' : 'bg-gray-700 text-gray-200'} max-w-xs sm:max-w-md`;
@@ -189,7 +185,7 @@
             div.scrollIntoView({ behavior: 'smooth', block: 'end' });
         }
 
-        // Fetch-based response with mode support
+       
         async function getGuidedResponse(prompt) {
             try {
                 const response = await fetch('/api/query', {
@@ -205,7 +201,7 @@
             }
         }
 
-        // Handle user input
+        
         sendBtn.addEventListener("click", async () => {
             const prompt = userInput.value.trim();
             if (!prompt) return;
