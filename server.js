@@ -3,7 +3,7 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const app = express();
 
 app.use(express.json());
-app.use(express.static('public')); // Serve static files (e.g., index.html)
+app.use(express.static('public')); 
 
 const genAI = new GoogleGenerativeAI(process.env.API_KEY || '<Replace With Yours>');
 const model = genAI.getGenerativeModel({
