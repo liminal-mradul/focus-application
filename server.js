@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public')); // Serve static files (e.g., index.html)
 
-const genAI = new GoogleGenerativeAI(process.env.API_KEY || 'AIzaSyC32lljgfS571Xp2VFXb-_yuDTdigA7lVQ');
+const genAI = new GoogleGenerativeAI(process.env.API_KEY || '<Replace With Yours>');
 const model = genAI.getGenerativeModel({
     model: 'gemini-2.0-flash-001',
     generationConfig: { maxOutputTokens: 200 }
